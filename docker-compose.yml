@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7.0
+    container_name: p4u_redis
+    ports:
+      - "6379:6379"
+    command: redis-server /usr/local/etc/redis/redis.conf # run redis config file
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    restart: always
+    networks:
+      - p4u_network
+
+networks:
+  p4u_network:
+    driver: bridge
